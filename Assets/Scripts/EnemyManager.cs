@@ -17,6 +17,8 @@ public class EnemyManager : MonoBehaviour
 
     public AilmentManager ailmentManager = new AilmentManager(1.0f, false, 1.0f, false, 1.0f, false, 1.0f, false);
 
+    public HealthCounter healthCounter = new HealthCounter(100, 100);
+
     // Start is called before the first frame update
     void Start()
     {

@@ -17,6 +17,10 @@ public class PlayerManager : MonoBehaviour
 
     public AilmentManager ailmentManager = new AilmentManager(1.0f, false, 1.0f, false, 1.0f, false, 1.0f, false);
 
+    public HealthCounter healthCounter= new HealthCounter(100, 100);
+
+    public BloodCounter bloodCounter = new BloodCounter(50,50);
+
     // Start is called before the first frame update
     void Start()
     {
