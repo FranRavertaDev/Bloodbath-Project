@@ -27,7 +27,12 @@ public class HealthCounter
 
     public void ChangeHealth(float newHealth)
     {
-        health = newHealth;
+        if (newHealth < minHealth ) {
+            health = minHealth;
+        } else if ( newHealth > maxHealth ) {
+            health = maxHealth;
+        } else { health = newHealth;}
+
     }
 
     public float GetHealth()

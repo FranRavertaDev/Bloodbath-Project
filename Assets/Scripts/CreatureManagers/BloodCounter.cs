@@ -28,7 +28,9 @@ public class BloodCounter
 
     public void ChangeBlood(float newBlood)
     {
-        blood = newBlood;
+        if (newBlood < minBlood) { blood = minBlood; }
+        else if (newBlood > maxBlood) { blood = maxBlood; }
+        else { blood = newBlood; }
     }
 
     public float GetBlood()
