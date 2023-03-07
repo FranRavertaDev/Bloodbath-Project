@@ -6,22 +6,30 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
+    public bool battleFlag = false;
 
-    public GameObject[] listPlayers;
-    public GameObject[] listEnemies;
+    public Character[] listCharacters;
+    // Character[] listEnemies;
 
-    public List<GameObject> turnsList;
+    // We create a sorted list to have the turns sorted via a key, the dexterity of the character
+    public SortedList<float,Character> turnsList;
+    
+    
+    private int enemyCounter = 0;
 
 
     private void Awake()
 
     {
-        listPlayers = GameObject.FindGameObjectsWithTag("Player");
-        listEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject obj in listPlayers) { turnsList.Add(obj); }
-        foreach (GameObject obj in listEnemies) { turnsList.Add(obj); }
+        listCharacters = GameObject.FindObjectsOfType<Character>();
+        //listEnemies = GameObject.FindObjectsOfType<Character>();
+        foreach (Character obj in listCharacters) 
+        { 
+            turnsList.Add(obj.Dexterity.Value,obj); 
+            if ( obj.CompareTag("Enemy") == true ) {enemyCounter++; }
+        }
 
-        turnsList.Sort( (x,y) => x.GetComponent<PlayerManager>().Dexterity.Value.CompareTo(y.GetComponent<EnemyManager>().Dexterity.Value) );
+        battleFlag= true;
 
     }
 
@@ -35,6 +43,8 @@ public class TurnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if ( enemyCounter == 0 ) { battleFlag = false; }
     }
+
+
 }
